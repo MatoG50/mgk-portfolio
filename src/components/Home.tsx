@@ -1,4 +1,4 @@
-import { Box, Text, Image, Heading, HStack, Flex } from '@chakra-ui/react';
+import { Box, Text, Image, Heading, Flex } from '@chakra-ui/react';
 import martin from '../assets/mato.png';
 import angular from '../assets/AngularJS.svg';
 import css from '../assets/CSS3.svg';
@@ -14,16 +14,22 @@ import react from '../assets/react.svg';
 const Home = () => {
   return (
     <>
-      <Box className='box' width='50%' margin='auto' marginTop='30px'>
+      <Box className='box' width='80%' margin='auto' marginTop='40px'>
         <div className='container'>
           <div className='left'>
             {' '}
-            <Heading color='rgb(231,58,101)'>Software Developer</Heading>
-            <Text color='white'>
-              Hi, I'm Martin Githinji, a passionate software developer from
-              Nairobi, Kenya.
+            <Heading color='rgb(231,58,101)' fontSize='55px'>
+              Software Developer
+            </Heading>
+            <Text color='white' fontSize='18px' noOfLines={[5, 6, 7]}>
+              Hi, I'm <b>Martin Githinji</b>, a Software Developer (React.js,
+              AngularJS, Next.js, Node.js) based in Nairobi, Kenya with a strong
+              ownership mindset, proficient in frontend technologies, excellent
+              communication and collaboration skills, and a passion for
+              learning, adapting to new technologies, and crafting exceptional
+              user experiences.
             </Text>
-            <Flex gap='10px'>
+            <Flex gap='10px' marginTop='30px'>
               <Image
                 width='30px'
                 height='30px'
