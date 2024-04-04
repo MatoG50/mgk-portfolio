@@ -7,7 +7,12 @@ import country from '../assets/countries.png';
 const Projects = () => {
   return (
     <>
-      <Heading color='rgb(231,58,101)' textAlign='center' fontSize='55px'>
+      <Heading
+        color='rgb(231,58,101)'
+        textAlign='center'
+        fontSize='45px'
+        marginTop='40px'
+      >
         Portfolio
       </Heading>
       <Box width='80%' margin='auto' marginTop='40px'>

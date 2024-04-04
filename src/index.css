@@ -28,6 +28,12 @@
 .right-portfolio {
   width: 50%;
 }
+
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
 /* Bubble */
 .stationary-image {
   animation: morph 8s ease-in-out infinite;

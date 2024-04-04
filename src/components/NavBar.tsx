@@ -3,7 +3,13 @@ import { Box, Flex, HStack, Text, Link } from '@chakra-ui/react';
 const NavBar = () => {
   return (
     <Box color='white' p={4}>
-      <Flex justifyContent='space-between' flexWrap='wrap' gap='20px'>
+      <Flex
+        justifyContent='space-between'
+        flexWrap='wrap'
+        gap='20px'
+        paddingRight='30px'
+        paddingLeft='30px'
+      >
         <Text fontSize='28px'>Martin</Text>
         <HStack fontSize='24px' spacing={6}>
           <Link>Home</Link>
