@@ -7,8 +7,8 @@ const Footer = () => {
     <>
       <HStack
         alignItems='center'
-        paddingRight='30px'
-        paddingLeft='30px'
+        paddingRight='20px'
+        paddingLeft='20px'
         justifyContent='space-between'
         backgroundColor='rgb(12,3,20)'
         color='white'

@@ -5,18 +5,23 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  HStack,
+  Flex,
   Heading,
 } from '@chakra-ui/react';
 
 const Posts = () => {
   return (
-    <Box width='80%' margin='auto' marginTop='40px'>
+    <Box width='80%' margin='auto' marginTop='40px' className='posts-box'>
       <Heading color='rgb(231,58,101)' textAlign='center' fontSize='45px'>
         Posts
       </Heading>
-      <HStack justifyContent='space-between' marginTop='40px'>
-        <Card width='300px'>
+      <Flex
+        justifyContent='space-between'
+        marginTop='40px'
+        gap='20px'
+        className='posts-flex'
+      >
+        <Card width='250px' className='card'>
           <CardHeader fontWeight='bold'>
             HOW TO CREATE A PROGRESS BAR USING CHAKRA UI
           </CardHeader>
@@ -34,11 +39,13 @@ const Posts = () => {
             </Button>
           </CardFooter>
         </Card>
-        <Card width='300px'>
-          <CardHeader>HOW TO CREATE A PROGRESS BAR USING CHAKRA UI</CardHeader>
+        <Card width='250px' className='card'>
+          <CardHeader fontWeight='bold'>
+            ITERATING THROUGH AN ARRAY USING map()
+          </CardHeader>
           <CardBody>
-            A progress bar shows the status of any task being carried out.
-            Progress bars are mostly used to download and upload...
+            map() is a built-in javascript method that allows you to iterate
+            over each item in an array and perform an operation on it...
           </CardBody>
           <CardFooter>
             <Button
@@ -50,11 +57,13 @@ const Posts = () => {
             </Button>
           </CardFooter>
         </Card>
-        <Card width='300px'>
-          <CardHeader>HOW TO CREATE A PROGRESS BAR USING CHAKRA UI</CardHeader>
+        <Card width='250px' className='card'>
+          <CardHeader fontWeight='bold'>
+            CREATING A MODAL IN REACT USING CHAKRA UI
+          </CardHeader>
           <CardBody>
-            A progress bar shows the status of any task being carried out.
-            Progress bars are mostly used to download and upload...
+            One way to create a modal in React is by using ChakraUI’s modal
+            component. The first step is installing...
           </CardBody>
           <CardFooter>
             <Button
@@ -66,7 +75,7 @@ const Posts = () => {
             </Button>
           </CardFooter>
         </Card>
-      </HStack>
+      </Flex>
     </Box>
   );
 };

@@ -5,7 +5,7 @@ import { FaMapLocation } from 'react-icons/fa6';
 
 const Contact = () => {
   return (
-    <Box width='80%' margin='auto'>
+    <Box width='80%' margin='auto' className='contact-box'>
       <Heading
         color='rgb(231,58,101)'
         textAlign='center'
@@ -15,21 +15,38 @@ const Contact = () => {
         Contact
       </Heading>
 
-      <Flex marginTop='40px' justifyContent='space-between'>
+      <Flex
+        marginTop='40px'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        className='flex'
+      >
         <VStack>
           <MdOutlineMail color='rgb(231,58,101)' className='icon' />
-          <Text color='white'>Email</Text>
-          <Text color='white'>matog50@gmail.com</Text>
+          <Text fontSize='18px' color='white'>
+            Email
+          </Text>
+          <Text fontSize='18px' color='white'>
+            matog50@gmail.com
+          </Text>
         </VStack>
         <VStack>
           <FaPhoneAlt color='rgb(231,58,101)' className='icon' />
-          <Text color='white'>Phone</Text>
-          <Text color='white'>+254 724 979 592</Text>
+          <Text fontSize='18px' color='white'>
+            Phone
+          </Text>
+          <Text fontSize='18px' color='white'>
+            +254 724 979 592
+          </Text>
         </VStack>
         <VStack>
           <FaMapLocation color='rgb(231,58,101)' className='icon' />
-          <Text color='white'>Address</Text>
-          <Text color='white'>PO BOX 100907-00101, Nairobi, Kenya</Text>
+          <Text fontSize='18px' color='white'>
+            Address
+          </Text>
+          <Text fontSize='18px' color='white'>
+            PO BOX 00101, Nairobi, Kenya
+          </Text>
         </VStack>
       </Flex>
     </Box>

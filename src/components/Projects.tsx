@@ -18,7 +18,7 @@ const Projects = () => {
       <Box width='80%' margin='auto' marginTop='40px'>
         <div className='container-portfolio'>
           <div className='left-portfolio'>
-            <Image src={quiz} alt='quiz-app' />
+            <Image src={quiz} alt='quiz-app' borderRadius='lg' />
           </div>
           <div className='right-portfolio'>
             <Heading textAlign='center' color='rgb(231,58,101)'>
@@ -91,12 +91,12 @@ const Projects = () => {
             </HStack>
           </div>
           <div className='left-portfolio'>
-            <Image src={game} alt='quiz-app' />
+            <Image src={game} alt='quiz-app' borderRadius='lg' />
           </div>
         </div>
         <div className='container-portfolio'>
           <div className='left-portfolio'>
-            <Image src={lockstore} alt='quiz-app' />
+            <Image src={lockstore} alt='quiz-app' borderRadius='lg' />
           </div>
           <div className='right-portfolio'>
             <Heading textAlign='center' color='rgb(231,58,101)'>
@@ -169,7 +169,7 @@ const Projects = () => {
             </HStack>
           </div>
           <div className='left-portfolio'>
-            <Image src={country} alt='quiz-app' />
+            <Image src={country} alt='quiz-app' borderRadius='lg' />
           </div>
         </div>
       </Box>
