@@ -13,13 +13,15 @@ const Footer = () => {
         backgroundColor='rgb(12,3,20)'
         color='white'
         height='80px'
-        marginTop='40px'
+        marginTop='30px'
       >
         <Text alignItems='center' justifyContent='center'>
           Copyright © 2024. All rights are reserved
         </Text>
         <Flex gap='10px'>
           <Image
+            onClick={() => window.open('https://github.com/MatoG50', '_blank')}
+            cursor='pointer'
             width='30px'
             height='30px'
             src={Github}
@@ -27,7 +29,19 @@ const Footer = () => {
             alt='Github'
           />
 
-          <Image width='30px' height='30px' src={linkedin} alt='LinkedIn' />
+          <Image
+            width='30px'
+            height='30px'
+            src={linkedin}
+            alt='LinkedIn'
+            onClick={() =>
+              window.open(
+                'https://www.linkedin.com/in/martin-githinji-k/',
+                '_blank'
+              )
+            }
+            cursor='pointer'
+          />
         </Flex>
       </HStack>
     </>

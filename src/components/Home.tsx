@@ -14,74 +14,109 @@ import react from '../assets/react.svg';
 const Home = () => {
   return (
     <>
-      <Box className='box' width='80%' margin='auto' marginTop='40px'>
-        <div className='container'>
-          <div className='left'>
-            {' '}
-            <Heading color='rgb(231,58,101)' fontSize='53px' className='header'>
-              Software Developer
-            </Heading>
-            <Text
-              color='white'
-              fontSize='18px'
-              className='texter'
-              justifyContent='center'
-            >
-              Hi, I'm <b>Martin Githinji</b>, a Software Developer (React.js,
-              AngularJS, Next.js, Node.js) based in Nairobi, Kenya with a strong
-              ownership mindset, proficient in frontend technologies, excellent
-              communication and collaboration skills, and a passion for
-              learning, adapting to new technologies, and crafting exceptional
-              user experiences.
+      <Box
+        className='box'
+        width='80%'
+        margin='auto'
+        h={{ base: 'auto', md: 'auto', lg: 'calc(100vh)' }}
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+      >
+        <Box>
+          <div className='container'>
+            <div className='left'>
+              {' '}
+              <Heading
+                color='rgb(231,58,101)'
+                fontSize='53px'
+                className='header'
+              >
+                Software Developer
+              </Heading>
+              <Text
+                color='white'
+                fontSize='18px'
+                className='texter'
+                justifyContent='center'
+              >
+                Hi, I'm <b>Martin Githinji</b>, a Software Developer (React.js,
+                AngularJS, Next.js, Node.js) based in Nairobi, Kenya with a
+                strong ownership mindset, proficient in frontend technologies,
+                excellent communication and collaboration skills, and a passion
+                for learning, adapting to new technologies, and crafting
+                exceptional user experiences.
+              </Text>
+              <Flex gap='10px' marginTop='30px' className='icons-flex'>
+                <Image
+                  onClick={() =>
+                    window.open('https://github.com/MatoG50', '_blank')
+                  }
+                  cursor='pointer'
+                  width='30px'
+                  height='30px'
+                  src={Github}
+                  backgroundColor='white'
+                  alt='Github'
+                />
+
+                <Image
+                  onClick={() =>
+                    window.open(
+                      'https://www.linkedin.com/in/martin-githinji-k/',
+                      '_blank'
+                    )
+                  }
+                  cursor='pointer'
+                  width='30px'
+                  height='30px'
+                  src={linkedin}
+                  alt='LinkedIn'
+                />
+              </Flex>
+              <Button
+                backgroundColor='rgb(231,58,101)'
+                marginTop='20px'
+                className='c-btn'
+              >
+                Contact Me
+              </Button>
+            </div>
+            <Image src={martin} alt='image' className='stationary-image' />
+          </div>
+          <Flex
+            alignItems='center'
+            marginTop='70px'
+            marginBottom='30px'
+            className='tech-stack'
+          >
+            <Text fontWeight='bold' color='white' marginRight='20px'>
+              Tech Stack:
             </Text>
-            <Flex gap='10px' marginTop='30px' className='icons-flex'>
+            <Flex flexWrap='wrap' gap='10px'>
+              <Image width='30px' height='30px' src={angular} alt='Angular' />
+              <Image width='30px' height='30px' src={react} alt='React' />
+              <Image width='30px' height='30px' src={js} alt='Javascript' />
+              <Image
+                width='30px'
+                backgroundColor='white'
+                height='30px'
+                src={next}
+                alt='NextJS'
+              />
+              <Image width='30px' height='30px' src={html} alt='HTML' />
+              <Image width='30px' height='30px' src={css} alt='CSS' />
               <Image
                 width='30px'
                 height='30px'
-                src={Github}
                 backgroundColor='white'
-                alt='Github'
+                src={Express}
+                alt='Express'
               />
-
-              <Image width='30px' height='30px' src={linkedin} alt='LinkedIn' />
+              <Image width='30px' height='30px' src={node} alt='NodeJS' />
             </Flex>
-            <Button
-              backgroundColor='rgb(231,58,101)'
-              marginTop='20px'
-              className='c-btn'
-            >
-              Contact Me
-            </Button>
-          </div>
-          <Image src={martin} alt='image' className='stationary-image' />
-        </div>
-        <Flex alignItems='center' marginTop='70px' className='tech-stack'>
-          <Text fontWeight='bold' color='white' marginRight='20px'>
-            Tech Stack:
-          </Text>
-          <Flex flexWrap='wrap' gap='10px'>
-            <Image width='30px' height='30px' src={angular} alt='Angular' />
-            <Image width='30px' height='30px' src={react} alt='React' />
-            <Image width='30px' height='30px' src={js} alt='Javascript' />
-            <Image
-              width='30px'
-              backgroundColor='white'
-              height='30px'
-              src={next}
-              alt='NextJS'
-            />
-            <Image width='30px' height='30px' src={html} alt='HTML' />
-            <Image width='30px' height='30px' src={css} alt='CSS' />
-            <Image
-              width='30px'
-              height='30px'
-              backgroundColor='white'
-              src={Express}
-              alt='Express'
-            />
-            <Image width='30px' height='30px' src={node} alt='NodeJS' />
           </Flex>
-        </Flex>
+        </Box>
       </Box>
     </>
   );

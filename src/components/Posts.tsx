@@ -11,13 +11,13 @@ import {
 
 const Posts = () => {
   return (
-    <Box width='80%' margin='auto' marginTop='40px' className='posts-box'>
+    <Box width='80%' margin='auto' marginTop='30px' className='posts-box'>
       <Heading color='rgb(231,58,101)' textAlign='center' fontSize='45px'>
         Posts
       </Heading>
       <Flex
         justifyContent='space-between'
-        marginTop='40px'
+        marginTop='30px'
         gap='20px'
         className='posts-flex'
       >

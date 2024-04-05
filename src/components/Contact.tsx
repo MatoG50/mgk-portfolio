@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, VStack, Heading, Text, Link } from '@chakra-ui/react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { MdOutlineMail } from 'react-icons/md';
 import { FaMapLocation } from 'react-icons/fa6';
@@ -10,13 +10,13 @@ const Contact = () => {
         color='rgb(231,58,101)'
         textAlign='center'
         fontSize='45px'
-        marginTop='40px'
+        marginTop='30px'
       >
         Contact
       </Heading>
 
       <Flex
-        marginTop='40px'
+        marginTop='30px'
         justifyContent='space-between'
         flexWrap='wrap'
         className='flex'
@@ -26,9 +26,15 @@ const Contact = () => {
           <Text fontSize='18px' color='white'>
             Email
           </Text>
-          <Text fontSize='18px' color='white'>
+          <Link
+            fontSize='18px'
+            color='white'
+            href='mailto:matog50@gmail.com'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             matog50@gmail.com
-          </Text>
+          </Link>
         </VStack>
         <VStack>
           <FaPhoneAlt color='rgb(231,58,101)' className='icon' />
