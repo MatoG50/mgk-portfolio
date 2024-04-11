@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { scrollToSectionFn } from './NavBar';
 
 interface ChakraMenuProps {
-  scrollToSection: scrollToSectionFn; // Use the interface here
+  scrollToSection: scrollToSectionFn;
 }
 
 const ChakraMenu: React.FC<ChakraMenuProps> = ({ scrollToSection }) => (

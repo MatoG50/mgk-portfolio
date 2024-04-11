@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Text, Show, Hide } from '@chakra-ui/react';
+import { Flex, HStack, Text, Show, Hide } from '@chakra-ui/react';
 import ChakraMenu from './ChakraMenu';
 
 export interface scrollToSectionFn {
@@ -8,19 +8,33 @@ export interface scrollToSectionFn {
 const NavBar = () => {
   const scrollToSection: scrollToSectionFn = sectionId => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const navbarHeight = document.querySelector('header')?.offsetHeight;
+
+    if (element && navbarHeight !== undefined) {
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offset = navbarHeight;
+
+      window.scrollTo({
+        top: elementTop - offset,
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <Box color='white' p={4}>
+    <>
       <Flex
+        as='header'
+        position='fixed'
+        w='100%'
+        zIndex='200'
+        backgroundColor='rgb(12,3,20)'
+        color='white'
+        height='80px'
+        alignItems='center'
         justifyContent='space-between'
-        flexWrap='wrap'
-        gap='20px'
-        paddingRight='20px'
-        paddingLeft='20px'
+        paddingLeft='30px'
+        paddingRight='30px'
       >
         <Text fontSize='28px'>Martin</Text>
         <Show breakpoint='(max-width: 768px)'>
@@ -35,7 +49,7 @@ const NavBar = () => {
           </HStack>
         </Hide>
       </Flex>
-    </Box>
+    </>
   );
 };
 

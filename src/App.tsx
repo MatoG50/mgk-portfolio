@@ -9,8 +9,8 @@ import Contact from './components/Contact';
 function App() {
   return (
     <>
-      <Box className='main-container'>
-        <NavBar />
+      <NavBar />
+      <Box className='main-container' paddingTop='70px'>
         <Home />
         <Projects />
         <Posts />
