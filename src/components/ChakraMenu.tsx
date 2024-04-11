@@ -6,8 +6,13 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { scrollToSectionFn } from './NavBar';
 
-const ChakraMenu = () => (
+interface ChakraMenuProps {
+  scrollToSection: scrollToSectionFn; // Use the interface here
+}
+
+const ChakraMenu: React.FC<ChakraMenuProps> = ({ scrollToSection }) => (
   <Menu>
     <MenuButton
       backgroundColor='rgb(231,58,101)'
@@ -18,16 +23,16 @@ const ChakraMenu = () => (
     />
     <MenuList>
       <MenuItem color='rgb(12,3,20)'>
-        <a href='#home'>Home</a>
+        <a onClick={() => scrollToSection('home')}>Home</a>
       </MenuItem>
       <MenuItem color='rgb(12,3,20)'>
-        <a href='#projects'>Projects</a>
+        <a onClick={() => scrollToSection('projects')}>Projects</a>
       </MenuItem>
       <MenuItem color='rgb(12,3,20)'>
-        <a href='#posts'>Posts</a>
+        <a onClick={() => scrollToSection('posts')}>Posts</a>
       </MenuItem>
       <MenuItem color='rgb(12,3,20)'>
-        <a href='#contact'>Contact</a>
+        <a onClick={() => scrollToSection('contact')}>Contact</a>
       </MenuItem>
     </MenuList>
   </Menu>

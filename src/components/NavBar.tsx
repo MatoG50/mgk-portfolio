@@ -1,7 +1,18 @@
 import { Box, Flex, HStack, Text, Show, Hide } from '@chakra-ui/react';
 import ChakraMenu from './ChakraMenu';
 
+export interface scrollToSectionFn {
+  (sectionId: string): void;
+}
+
 const NavBar = () => {
+  const scrollToSection: scrollToSectionFn = sectionId => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <Box color='white' p={4}>
       <Flex
@@ -13,14 +24,14 @@ const NavBar = () => {
       >
         <Text fontSize='28px'>Martin</Text>
         <Show breakpoint='(max-width: 768px)'>
-          <ChakraMenu />
+          <ChakraMenu scrollToSection={scrollToSection} />
         </Show>
         <Hide breakpoint='(max-width: 768px)'>
           <HStack fontSize='24px' spacing={6}>
-            <a href='#home'>Home</a>
-            <a href='#projects'>Projects</a>
-            <a href='#posts'>Posts</a>
-            <a href='#contact'>Contact</a>
+            <a onClick={() => scrollToSection('home')}>Home</a>
+            <a onClick={() => scrollToSection('projects')}>Projects</a>
+            <a onClick={() => scrollToSection('posts')}>Posts</a>
+            <a onClick={() => scrollToSection('contact')}>Contact</a>
           </HStack>
         </Hide>
       </Flex>
