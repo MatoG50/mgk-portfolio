@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Text, Link, Show, Hide } from '@chakra-ui/react';
+import { Box, Flex, HStack, Text, Show, Hide } from '@chakra-ui/react';
 import ChakraMenu from './ChakraMenu';
 
 const NavBar = () => {
@@ -17,10 +17,10 @@ const NavBar = () => {
         </Show>
         <Hide breakpoint='(max-width: 768px)'>
           <HStack fontSize='24px' spacing={6}>
-            <Link>Home</Link>
-            <Link>Projects</Link>
-            <Link>Posts</Link>
-            <Link>Contact</Link>
+            <a href='#home'>Home</a>
+            <a href='#projects'>Projects</a>
+            <a href='#posts'>Posts</a>
+            <a href='#contact'>Contact</a>
           </HStack>
         </Hide>
       </Flex>

@@ -15,6 +15,7 @@ const Home = () => {
   return (
     <>
       <Box
+        id='home'
         className='box'
         width='80%'
         margin='auto'

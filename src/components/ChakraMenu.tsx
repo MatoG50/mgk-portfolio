@@ -17,10 +17,18 @@ const ChakraMenu = () => (
       variant='outline'
     />
     <MenuList>
-      <MenuItem color='rgb(12,3,20)'>Home</MenuItem>
-      <MenuItem color='rgb(12,3,20)'>Projects</MenuItem>
-      <MenuItem color='rgb(12,3,20)'>Posts</MenuItem>
-      <MenuItem color='rgb(12,3,20)'>Contact</MenuItem>
+      <MenuItem color='rgb(12,3,20)'>
+        <a href='#home'>Home</a>
+      </MenuItem>
+      <MenuItem color='rgb(12,3,20)'>
+        <a href='#projects'>Projects</a>
+      </MenuItem>
+      <MenuItem color='rgb(12,3,20)'>
+        <a href='#posts'>Posts</a>
+      </MenuItem>
+      <MenuItem color='rgb(12,3,20)'>
+        <a href='#contact'>Contact</a>
+      </MenuItem>
     </MenuList>
   </Menu>
 );

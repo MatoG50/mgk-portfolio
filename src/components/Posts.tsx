@@ -11,7 +11,7 @@ import {
 
 const Posts = () => {
   return (
-    <Box width='80%' margin='auto' marginTop='30px' className='posts-box'>
+    <Box width='80%' margin='auto' marginTop='30px' className='posts-box' id='posts'>
       <Heading color='rgb(231,58,101)' textAlign='center' fontSize='45px'>
         Posts
       </Heading>

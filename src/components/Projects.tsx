@@ -12,6 +12,7 @@ const Projects = () => {
         textAlign='center'
         fontSize='45px'
         marginBottom='30px'
+        id='projects'
       >
         Portfolio
       </Heading>

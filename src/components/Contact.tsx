@@ -5,7 +5,7 @@ import { FaMapLocation } from 'react-icons/fa6';
 
 const Contact = () => {
   return (
-    <Box width='80%' margin='auto' className='contact-box'>
+    <Box width='80%' margin='auto' className='contact-box' id='contact'>
       <Heading
         color='rgb(231,58,101)'
         textAlign='center'
