@@ -76,6 +76,9 @@ a {
     margin-right: auto;
     margin-bottom: 20px;
   }
+  .container-portfolio {
+    margin-bottom: 30px;
+  }
   .flex,
   .container {
     flex-direction: column;
@@ -92,14 +95,15 @@ a {
     flex-direction: column;
     gap: 30px;
   }
-  .card,
   .stationary-image,
+  .card,
   .c-btn,
   .icons-flex,
   .tech-stack {
     margin-right: auto;
     margin-left: auto;
   }
+
   .left {
     margin-right: auto;
     margin-left: auto;

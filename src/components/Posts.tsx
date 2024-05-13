@@ -15,7 +15,7 @@ const Posts = () => {
       <Heading
         color="rgb(231,58,101)"
         textAlign="center"
-        fontSize="45px"
+        fontSize={{ base: "30px", md: "45px" }}
         id="posts"
       >
         Posts
@@ -25,8 +25,9 @@ const Posts = () => {
         marginTop="30px"
         gap="20px"
         className="posts-flex"
+        fontSize={{ base: "18px", md: "24px" }}
       >
-        <Card width="250px" className="card">
+        <Card width={{ base: "250px", md: "300px" }} className="card">
           <CardHeader fontWeight="bold">
             HOW TO CREATE A PROGRESS BAR USING CHAKRA UI
           </CardHeader>
@@ -50,7 +51,7 @@ const Posts = () => {
             </Button>
           </CardFooter>
         </Card>
-        <Card width="250px" className="card">
+        <Card width={{ base: "250px", md: "300px" }} className="card">
           <CardHeader fontWeight="bold">
             ITERATING THROUGH AN ARRAY USING map()
           </CardHeader>
@@ -74,7 +75,7 @@ const Posts = () => {
             </Button>
           </CardFooter>
         </Card>
-        <Card width="250px" className="card">
+        <Card width={{ base: "250px", md: "300px" }} className="card">
           <CardHeader fontWeight="bold">
             CREATING A MODAL IN REACT USING CHAKRA UI
           </CardHeader>
