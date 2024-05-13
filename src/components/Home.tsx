@@ -80,7 +80,7 @@ const Home = () => {
                 marginTop='20px'
                 className='c-btn'
               >
-                Contact Me
+                <a href='#contact'>Contact Me</a>
               </Button>
             </div>
             <Image src={martin} alt='image' className='stationary-image' />
