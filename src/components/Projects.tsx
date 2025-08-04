@@ -1,8 +1,8 @@
 import { Box, Button, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import quiz from "../assets/quiz-app.png";
 import game from "../assets/gamehub.png";
+import cmv from "../assets/cmv.png";
 import lockstore from "../assets/lockstore.png";
-import country from "../assets/countries.png";
 
 const Projects = () => {
   return (
@@ -19,8 +19,68 @@ const Projects = () => {
       <Box width="80%" margin="auto">
         <div className="container-portfolio">
           <div className="left-portfolio">
-            <Image src={game} alt="quiz-app" borderRadius="lg" />
+            <Image src={cmv} alt="quiz-app" borderRadius="lg" />
           </div>
+          <div className="right-portfolio">
+            <Heading
+              textAlign="center"
+              color="rgb(231,58,101)"
+              fontSize={{ base: "25px", md: "30px" }}
+            >
+              Trip Logger
+            </Heading>
+            <Text
+              textAlign="center"
+              color="white"
+              fontSize={{ base: "18px", md: "24px" }}
+            >
+              A full-stack web app that allows truck drivers to log their
+              long-haul trips while complying with ELD (Electronic Logging
+              Device) and DOT regulations.
+            </Text>
+            <HStack
+              marginRight="auto"
+              marginTop="20px"
+              marginLeft="auto"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text color="white" fontWeight="bold" fontSize="18px">
+                React
+              </Text>
+              <Text color="white" fontWeight="bold" fontSize="18px">
+                Django
+              </Text>
+            </HStack>
+            <HStack
+              marginRight="auto"
+              marginTop="20px"
+              marginLeft="auto"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Button
+                size="lg"
+                backgroundColor="rgb(231,58,101)"
+                onClick={() =>
+                  window.open("https://github.com/MatoG50/CMV-LOG", "_blank")
+                }
+              >
+                Github
+              </Button>
+              <Button
+                backgroundColor="rgb(231,58,101)"
+                size="lg"
+                onClick={() =>
+                  window.open("https://cmv-log.vercel.app/", "_blank")
+                }
+              >
+                Website
+              </Button>
+            </HStack>
+          </div>
+        </div>
+        <div className="container-portfolio">
           <div className="right-portfolio">
             <Heading
               textAlign="center"
@@ -79,76 +139,11 @@ const Projects = () => {
               </Button>
             </HStack>
           </div>
-        </div>
-        <div className="container-portfolio">
-          <div className="right-portfolio">
-            <Heading
-              textAlign="center"
-              color="rgb(231,58,101)"
-              fontSize={{ base: "25px", md: "30px" }}
-            >
-              Countries
-            </Heading>
-            <Text
-              textAlign="center"
-              color="white"
-              fontSize={{ base: "25px", md: "30px" }}
-            >
-              Countries app is the ultimate resource for exploring the diverse
-              world we live in! The app provides a wealth of information about
-              countries worldwide.
-            </Text>
-            <HStack
-              marginRight="auto"
-              marginTop="20px"
-              marginLeft="auto"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text color="white" fontWeight="bold" fontSize="18px">
-                React
-              </Text>
-              <Text color="white" fontWeight="bold" fontSize="18px">
-                Typescript
-              </Text>
-            </HStack>
-            <HStack
-              marginRight="auto"
-              marginTop="20px"
-              marginLeft="auto"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Button
-                backgroundColor="rgb(231,58,101)"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://github.com/MatoG50/Countries-app",
-                    "_blank"
-                  )
-                }
-              >
-                Github
-              </Button>
-              <Button
-                backgroundColor="rgb(231,58,101)"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://countries-app-pi-one.vercel.app/",
-                    "_blank"
-                  )
-                }
-              >
-                Website
-              </Button>
-            </HStack>
-          </div>
           <div className="left-portfolio">
-            <Image src={country} alt="quiz-app" borderRadius="lg" />
+            <Image src={game} alt="quiz-app" borderRadius="lg" />
           </div>
         </div>
+
         <div className="container-portfolio">
           <div className="left-portfolio">
             <Image src={lockstore} alt="quiz-app" borderRadius="lg" />

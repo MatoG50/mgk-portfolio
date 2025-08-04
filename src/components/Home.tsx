@@ -41,12 +41,14 @@ const Home = () => {
                 className="texter"
                 justifyContent="center"
               >
-                Hi, I'm <b>Martin Githinji</b>, a Software Developer (React.js,
-                AngularJS, Next.js, Node.js) based in Nairobi, Kenya with a
-                strong ownership mindset, proficient in frontend technologies,
-                excellent communication and collaboration skills, and a passion
-                for learning, adapting to new technologies, and crafting
-                exceptional user experiences.
+                Hi, I’m <b>Martin Githinji</b>, a Nairobi-based Software
+                Developer specializing in React.js, AngularJS, and Next.js. I
+                build fast, responsive, and user-centric web applications with a
+                focus on performance and accessibility. With a strong ownership
+                mindset, I thrive in collaborative environments, bridging the
+                gap between design and functionality. Passionate about learning
+                and adapting to new technologies, I’m committed to crafting
+                exceptional digital experiences; from concept to deployment.
               </Text>
               <Flex gap="10px" marginTop="30px" className="icons-flex">
                 <Image
