@@ -30,7 +30,7 @@ const Contact = () => {
       mx="auto"
     >
       <span className="section-tag">03 / CONNECT</span>
-      
+
       <MotionBox
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const Contact = () => {
         mt="20px"
       >
         <Grid templateColumns={{ base: "1fr", lg: "1.1fr 1fr" }} gap="50px" alignItems="center">
-          
+
           {/* Left Column: Heading & Paragraph */}
           <Flex direction="column" gap="20px">
             <Heading
@@ -54,22 +54,24 @@ const Contact = () => {
               Let's build something <br />
               <span className="gradient-text-purple" style={{ fontWeight: "800", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>remarkable.</span>
             </Heading>
-            
+
             <Text fontSize="15px" color="var(--text-secondary)" lineHeight="1.7">
-              Whether you are looking to integrate dynamic B2B system APIs, deploy custom machine learning models, launch a highly scalable React storefront, or hire an engineer with a strong ownership mindset to drive production outcomes, I am ready to collaborate.
+              Let’s build something impactful together.
+              <br />
+              Open to software engineering opportunities and collaborations.
             </Text>
 
             <Flex align="center" gap="10px" mt="10px">
               <Icon as={FiMapPin} color="var(--primary-accent)" w="16px" h="16px" />
               <Text fontSize="14px" color="var(--text-muted)" fontWeight="500">
-                Nairobi, Kenya • PO BOX 00101 • Remote / Hybrid
+                Nairobi, Kenya • Remote / Hybrid
               </Text>
             </Flex>
           </Flex>
 
           {/* Right Column: Interaction cards */}
           <Flex direction="column" gap="16px">
-            
+
             {/* Email card */}
             <Box
               bg="rgba(255, 255, 255, 0.02)"

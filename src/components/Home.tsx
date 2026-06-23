@@ -102,7 +102,7 @@ const Home = () => {
             maxW="600px"
             mx={{ base: "auto", lg: "0" }}
           >
-            Full-stack engineer specializing in scalable web applications, business systems, and AI-powered solutions. Dedicated to building production-ready architectures that drive real-world business outcomes.
+            Full-stack engineer focused on scalable web applications, business systems, and AI-assisted development. I build production-ready software that delivers practical outcomes for real users and businesses.
           </Text>
 
           {/* Buttons & Actions */}

@@ -72,15 +72,15 @@ const About = () => {
               color="var(--text-primary)"
               fontWeight="500"
             >
-              I build production-ready software systems, high-traffic integrations, and machine learning models that address complex corporate requirements.
+              I build reliable, scalable web applications and backend systems that solve real business problems.
             </Text>
 
             <Text fontSize="15px" lineHeight="1.7" color="var(--text-secondary)">
-              My software engineering philosophy revolves around reliability, maintainability, and domain-driven design. Rather than stitching together templates, I focus on building resilient backend pipelines, clean frontend applications, and robust third-party system sync engines.
+              My work spans full-stack development, API integrations, and data-driven applications, with a focus on clean architecture and maintainable code. I enjoy turning complex requirements into simple, functional systems, from e-commerce platforms to compliance tools and data-driven applications.
             </Text>
 
             <Text fontSize="15px" lineHeight="1.7" color="var(--text-secondary)">
-              Leveraging a strong foundation in modern Javascript/Typescript frameworks and Python machine learning libraries, I construct secure, end-to-end applications designed to solve concrete business challenges. I am continuously refining these capabilities through rigorous academic study at Quantic.
+              I’m currently pursuing a Master’s in Software Engineering at Quantic, where I continue strengthening my understanding of system design, software architecture, and applied computing.
             </Text>
 
             {/* MSc Highlight Box */}
