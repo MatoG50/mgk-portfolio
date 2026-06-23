@@ -1,50 +1,52 @@
-import { HStack, Text, Flex, Image } from '@chakra-ui/react';
-import linkedin from '../assets/LinkedIn.svg';
-import Github from '../assets/GitHub.svg';
+import { Box, Flex, Text, Link, Icon } from "@chakra-ui/react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
-  return (
-    <>
-      <HStack
-        alignItems='center'
-        paddingRight='20px'
-        paddingLeft='20px'
-        justifyContent='space-between'
-        backgroundColor='rgb(12,3,20)'
-        color='white'
-        height='80px'
-        marginTop='30px'
-      >
-        <Text alignItems='center' justifyContent='center'>
-          Copyright © 2024. All rights are reserved
-        </Text>
-        <Flex gap='10px'>
-          <Image
-            onClick={() => window.open('https://github.com/MatoG50', '_blank')}
-            cursor='pointer'
-            width='30px'
-            height='30px'
-            src={Github}
-            backgroundColor='white'
-            alt='Github'
-          />
+  const currentYear = new Date().getFullYear();
 
-          <Image
-            width='30px'
-            height='30px'
-            src={linkedin}
-            alt='LinkedIn'
-            onClick={() =>
-              window.open(
-                'https://www.linkedin.com/in/martin-githinji-k/',
-                '_blank'
-              )
-            }
-            cursor='pointer'
-          />
+  return (
+    <Box
+      as="footer"
+      borderTop="1px solid rgba(255, 255, 255, 0.05)"
+      backgroundColor="#060608"
+      py="30px"
+      px={{ base: "20px", md: "60px" }}
+      mt="50px"
+    >
+      <Flex
+        maxW="1200px"
+        mx="auto"
+        direction={{ base: "column", sm: "row" }}
+        justify="space-between"
+        align="center"
+        gap="15px"
+      >
+        <Text fontSize="13px" color="var(--text-muted)">
+          © {currentYear} Martin Githinji. All rights reserved.
+        </Text>
+
+        <Flex gap="20px" align="center">
+          <Link
+            href="https://github.com/MatoG50"
+            target="_blank"
+            color="var(--text-muted)"
+            _hover={{ color: "white" }}
+            transition="color 0.2s"
+          >
+            <Icon as={FaGithub} w="18px" h="18px" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/martin-githinji-k/"
+            target="_blank"
+            color="var(--text-muted)"
+            _hover={{ color: "white" }}
+            transition="color 0.2s"
+          >
+            <Icon as={FaLinkedin} w="18px" h="18px" />
+          </Link>
         </Flex>
-      </HStack>
-    </>
+      </Flex>
+    </Box>
   );
 };
 
