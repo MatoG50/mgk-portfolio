@@ -1,12 +1,108 @@
 import { Box, Flex, Grid, Heading, Text, Link, Icon, Badge } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FiExternalLink, FiGithub, FiDatabase, FiShield, FiActivity, FiLayers, FiTruck, FiPlay } from "react-icons/fi";
-import cmvImage from "../assets/cmv.png";
-import gamehubImage from "../assets/gamehub.png";
+import {
+  FiExternalLink,
+  FiGithub,
+  FiDatabase,
+  FiShield,
+  FiLayers,
+  FiTruck,
+  FiPlay,
+  FiCpu,
+  FiClock,
+} from "react-icons/fi";
+import { projectsList, type ProjectItem } from "../data/portfolioData";
 
 const MotionBox = motion(Box);
 
+const additionalProjectIcons: Record<string, typeof FiTruck> = {
+  "fleet-compliance": FiTruck,
+  gamehub: FiPlay,
+  "malware-detector": FiShield,
+};
+
+const FeaturedArchitectureVisual = ({ project }: { project: ProjectItem }) => {
+  const nodes = project.architectureNodes || [];
+
+  return (
+    <Flex direction="column" justify="center" align="center" w="100%">
+      <Box
+        w="100%"
+        maxW="480px"
+        bg="rgba(0,0,0,0.4)"
+        borderRadius="16px"
+        p="25px"
+        border="1px solid rgba(255,255,255,0.06)"
+        position="relative"
+        boxShadow="inset 0 0 20px rgba(0, 242, 254, 0.05)"
+      >
+        <Text
+          fontSize="10px"
+          fontWeight="700"
+          color="var(--primary-accent)"
+          letterSpacing="0.08em"
+          mb="20px"
+        >
+          {project.architectureTitle || "SYSTEM ARCHITECTURE"}
+        </Text>
+
+        <Flex direction="column" gap="16px" position="relative">
+          {nodes.map((node, index) => (
+            <Box key={node.title}>
+              <Flex
+                justify="space-between"
+                align="center"
+                gap="10px"
+                bg={index === 1 ? "rgba(127, 0, 255, 0.05)" : "rgba(255, 255, 255, 0.03)"}
+                border={
+                  index === 1
+                    ? "1px solid rgba(127, 0, 255, 0.45)"
+                    : "1px solid rgba(255,255,255,0.05)"
+                }
+                p="12px"
+                borderRadius="10px"
+              >
+                <Flex align="center" gap="10px" minW="0">
+                  <Icon
+                    as={index === 0 ? FiLayers : index === 1 ? FiCpu : FiDatabase}
+                    color={index === 1 ? "var(--secondary-accent)" : "var(--primary-accent)"}
+                    flexShrink={0}
+                  />
+                  <Box minW="0">
+                    <Text fontSize="12px" fontWeight="700" color="white">
+                      {node.title}
+                    </Text>
+                    <Text fontSize="10px" color="var(--text-muted)">
+                      {node.subtitle}
+                    </Text>
+                  </Box>
+                </Flex>
+                <Badge colorScheme={node.badgeColor} fontSize="9px" flexShrink={0}>
+                  {node.badge}
+                </Badge>
+              </Flex>
+
+              {index < nodes.length - 1 && (
+                <Flex justify="center" align="center" h="14px" mt="2px">
+                  <Box
+                    w="2px"
+                    h="14px"
+                    bg="linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent))"
+                  />
+                </Flex>
+              )}
+            </Box>
+          ))}
+        </Flex>
+      </Box>
+    </Flex>
+  );
+};
+
 const Projects = () => {
+  const featuredProjects = projectsList.filter((p) => p.tier === "featured");
+  const additionalProjects = projectsList.filter((p) => p.tier === "additional");
+
   return (
     <Box
       id="projects"
@@ -18,291 +114,184 @@ const Projects = () => {
       <Flex direction="column" gap="50px">
         {/* Section Header */}
         <Box>
-          <span className="section-tag">02 / PORTFOLIO</span>
+          <span className="section-tag">03 / PORTFOLIO</span>
           <Heading
             fontSize={{ base: "32px", md: "42px" }}
             fontWeight="800"
             letterSpacing="-0.02em"
             mb="15px"
           >
-            Featured Case Studies.
+            Featured Projects.
           </Heading>
-          <Text color="var(--text-secondary)" fontSize="16px" maxW="600px">
-            A selection of production-grade systems and business solutions developed from the ground up.
+          <Text color="var(--text-secondary)" fontSize="16px" maxW="650px">
+            Full-stack applications, backend APIs, payment integrations, and applied AI systems built around real operational problems.
           </Text>
-          <Box w="60px" h="4px" bg="linear-gradient(90deg, var(--primary-accent), var(--secondary-accent))" borderRadius="2px" mt="20px" />
+          <Box
+            w="60px"
+            h="4px"
+            bg="linear-gradient(90deg, var(--primary-accent), var(--secondary-accent))"
+            borderRadius="2px"
+            mt="20px"
+          />
         </Box>
 
-        {/* Featured Projects Stack */}
-        <Flex direction="column" gap="80px" mt="20px">
-          
-          {/* CASE STUDY 1: Clover-Integrated E-commerce Platform */}
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="glass-card"
-            p={{ base: "25px", md: "45px" }}
-          >
-            <Grid templateColumns={{ base: "1fr", lg: "1fr 1.1fr" }} gap="40px" alignItems="center">
-              
-              {/* Visual Presentation (CSS System Architecture) */}
-              <Flex direction="column" justify="center" align="center" w="100%">
-                <Box
-                  w="100%"
-                  maxW="480px"
-                  bg="rgba(0,0,0,0.4)"
-                  borderRadius="16px"
-                  p="25px"
-                  border="1px solid rgba(255,255,255,0.06)"
-                  position="relative"
-                  boxShadow="inset 0 0 20px rgba(0, 242, 254, 0.05)"
+        {/* Featured Projects Stack (1-4) */}
+        <Flex direction="column" gap="64px" mt="10px">
+          {featuredProjects.map((project, idx) => {
+            const isVisualRight = idx % 2 === 1;
+
+            return (
+              <MotionBox
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7 }}
+                className="glass-card"
+                p={{ base: "25px", md: "45px" }}
+              >
+                <Grid
+                  templateColumns={{ base: "1fr", lg: isVisualRight ? "1.15fr 0.95fr" : "0.95fr 1.15fr" }}
+                  gap="40px"
+                  alignItems="center"
                 >
-                  <Text fontSize="10px" fontWeight="700" color="var(--primary-accent)" letterSpacing="0.08em" mb="20px">
-                    INTEGRATION ARCHITECTURE SCHEMA
-                  </Text>
-                  
-                  {/* Flow layout */}
-                  <Flex direction="column" gap="20px" position="relative">
-                    {/* Node 1: Clover POS */}
-                    <Flex justify="space-between" align="center" bg="rgba(255, 255, 255, 0.03)" border="1px solid rgba(255,255,255,0.05)" p="12px" borderRadius="10px">
-                      <Flex align="center" gap="10px">
-                        <Icon as={FiDatabase} color="var(--primary-accent)" />
-                        <Box>
-                          <Text fontSize="12px" fontWeight="700" color="white">Clover Retail POS</Text>
-                          <Text fontSize="10px" color="var(--text-muted)">In-Store Physical Inventory</Text>
+                  {/* Visual Column */}
+                  <Box order={{ base: 1, lg: isVisualRight ? 2 : 1 }}>
+                    <FeaturedArchitectureVisual project={project} />
+                  </Box>
+
+                  {/* Details Column */}
+                  <Flex direction="column" gap="16px" order={{ base: 2, lg: isVisualRight ? 1 : 2 }}>
+                    <Flex align="center" gap="8px" flexWrap="wrap">
+                      <Badge colorScheme={project.statusColor} px="8px" py="2px" fontSize="10px">
+                        {project.status}
+                      </Badge>
+                      <Badge
+                        bg="rgba(0, 242, 254, 0.1)"
+                        color="var(--primary-accent)"
+                        border="1px solid rgba(0, 242, 254, 0.2)"
+                        px="8px"
+                        py="2px"
+                        fontSize="10px"
+                      >
+                        {project.categoryBadge}
+                      </Badge>
+                    </Flex>
+
+                    <Heading as="h3" fontSize={{ base: "22px", md: "26px" }} fontWeight="800" color="white">
+                      {project.title}
+                    </Heading>
+
+                    <Text fontSize="14px" color="var(--text-primary)" lineHeight="1.65">
+                      {project.intro}
+                    </Text>
+
+                    <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
+                      <strong>Problem:</strong> {project.problem}
+                    </Text>
+
+                    <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
+                      <strong>Implementation:</strong> {project.solution}
+                    </Text>
+
+                    <Flex
+                      as="ul"
+                      direction="column"
+                      gap="6px"
+                      pl="18px"
+                      fontSize="13px"
+                      color="var(--text-secondary)"
+                      lineHeight="1.55"
+                    >
+                      {project.keyPoints.map((point) => (
+                        <Box as="li" key={point}>
+                          {point}
                         </Box>
-                      </Flex>
-                      <Badge colorScheme="green" fontSize="9px">POS Master</Badge>
+                      ))}
                     </Flex>
 
-                    {/* Sync Arrow Bridge */}
-                    <Flex justify="center" align="center" h="10px" my="-5px">
-                      <Box w="2px" h="20px" bg="linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent))" />
-                    </Flex>
+                    {project.ongoingWork && (
+                      <Box
+                        bg="rgba(245, 158, 11, 0.06)"
+                        border="1px solid rgba(245, 158, 11, 0.2)"
+                        borderRadius="10px"
+                        p="12px 14px"
+                      >
+                        <Text fontSize="12px" color="var(--text-secondary)" lineHeight="1.55">
+                          <strong style={{ color: "#f59e0b" }}>Current Status:</strong> {project.ongoingWork}
+                        </Text>
+                      </Box>
+                    )}
 
-                    {/* Node 2: Node.js Express Backend */}
-                    <Flex justify="space-between" align="center" bg="rgba(127, 0, 255, 0.05)" border="1px solid var(--secondary-accent)" p="12px" borderRadius="10px">
-                      <Flex align="center" gap="10px">
-                        <Icon as={FiLayers} color="var(--secondary-accent)" />
-                        <Box>
-                          <Text fontSize="12px" fontWeight="700" color="white">Express API & Sync Engine</Text>
-                          <Text fontSize="10px" color="var(--text-muted)">Webhooks, Inventory Sync, PostgreSQL</Text>
+                    <Flex flexWrap="wrap" gap="8px" pt="6px">
+                      {project.technologies.map((tech) => (
+                        <Box
+                          key={tech}
+                          bg="rgba(255,255,255,0.03)"
+                          border="1px solid rgba(255,255,255,0.06)"
+                          borderRadius="6px"
+                          px="10px"
+                          py="2px"
+                          fontSize="12px"
+                          color="var(--text-muted)"
+                        >
+                          {tech}
                         </Box>
-                      </Flex>
-                      <Badge colorScheme="purple" fontSize="9px">Active Service</Badge>
+                      ))}
                     </Flex>
 
-                    {/* Sync Arrow Bridge */}
-                    <Flex justify="center" align="center" h="10px" my="-5px">
-                      <Box w="2px" h="20px" bg="linear-gradient(to bottom, var(--secondary-accent), var(--primary-accent))" />
-                    </Flex>
+                    {/* Action Links or Pending Notice */}
+                    <Flex gap="18px" pt="4px" align="center" flexWrap="wrap">
+                      {project.githubUrl && (
+                        <Link
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          fontSize="14px"
+                          fontWeight="600"
+                          color="white"
+                          display="inline-flex"
+                          alignItems="center"
+                          gap="6px"
+                          _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
+                        >
+                          <Icon as={FiGithub} /> GitHub
+                        </Link>
+                      )}
 
-                    {/* Node 3: React Storefront */}
-                    <Flex justify="space-between" align="center" bg="rgba(255, 255, 255, 0.03)" border="1px solid rgba(255,255,255,0.05)" p="12px" borderRadius="10px">
-                      <Flex align="center" gap="10px">
-                        <Icon as={FiExternalLink} color="var(--primary-accent)" />
-                        <Box>
-                          <Text fontSize="12px" fontWeight="700" color="white">React Customer Storefront</Text>
-                          <Text fontSize="10px" color="var(--text-muted)">Dynamic Catalog & checkout flow</Text>
-                        </Box>
-                      </Flex>
-                      <Badge colorScheme="cyan" fontSize="9px">Client App</Badge>
+                      {project.liveUrl && (
+                        <Link
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          fontSize="14px"
+                          fontWeight="600"
+                          color="white"
+                          display="inline-flex"
+                          alignItems="center"
+                          gap="6px"
+                          _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
+                        >
+                          <Icon as={FiExternalLink} /> Live Site
+                        </Link>
+                      )}
+
+                      {project.linksPendingNote && (
+                        <Flex align="center" gap="8px" color="var(--text-muted)" fontSize="13px">
+                          <Icon as={FiClock} color="var(--secondary-accent)" />
+                          <Text>{project.linksPendingNote}</Text>
+                        </Flex>
+                      )}
                     </Flex>
                   </Flex>
-
-                  {/* Metrics Banner inside */}
-                  <Grid templateColumns="repeat(3, 1fr)" gap="10px" mt="25px" borderTop="1px solid rgba(255,255,255,0.05)" pt="15px">
-                    <Box textAlign="center">
-                      <Text fontSize="16px" fontWeight="800" color="var(--highlight-accent)">99.8%</Text>
-                      <Text fontSize="9px" color="var(--text-muted)">Sync Accuracy</Text>
-                    </Box>
-                    <Box textAlign="center">
-                      <Text fontSize="16px" fontWeight="800" color="var(--primary-accent)">&lt; 5s</Text>
-                      <Text fontSize="9px" color="var(--text-muted)">Webhook Latency</Text>
-                    </Box>
-                    <Box textAlign="center">
-                      <Text fontSize="16px" fontWeight="800" color="var(--secondary-accent)">2.4x</Text>
-                      <Text fontSize="9px" color="var(--text-muted)">Checkout Speed</Text>
-                    </Box>
-                  </Grid>
-                </Box>
-              </Flex>
-
-              {/* Case Study Details */}
-              <Flex direction="column" gap="18px">
-                <Flex align="center" gap="8px" flexWrap="wrap">
-                  <Badge bg="rgba(0, 242, 254, 0.1)" color="var(--primary-accent)" border="1px solid rgba(0, 242, 254, 0.2)" px="8px" py="2px">Production System</Badge>
-                  <Badge bg="rgba(127, 0, 255, 0.1)" color="var(--secondary-accent)" border="1px solid rgba(127, 0, 255, 0.2)" px="8px" py="2px">B2B Integration</Badge>
-                </Flex>
-
-                <Heading as="h3" fontSize={{ base: "24px", md: "28px" }} fontWeight="800" color="white">
-                  Clover-Integrated E-commerce Platform
-                </Heading>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Challenge:</strong> A retail business needed to launch an online storefront while keeping their active Clover POS inventory records, customer accounts, and sales logs in absolute synchronization without manual data entry.
-                </Text>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Solution:</strong> Engineered a robust node integration middleware running webhook listeners to bind Clover POS state changes to a custom React web catalog. This included automated transaction routing and state synchronization back to the retail counters.
-                </Text>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Key Outcomes:</strong> Designed webhooks for real-time inventory adjustments, eliminating double-sell incidents. Built checkout flows routing transactions directly to Clover registers with secure card handling.
-                </Text>
-
-                <Flex flexWrap="wrap" gap="8px" pt="10px">
-                  {["React", "Node.js", "Express", "PostgreSQL", "Clover API", "Webhooks"].map((tech) => (
-                    <Box key={tech} bg="rgba(255,255,255,0.03)" border="1px solid rgba(255,255,255,0.06)" borderRadius="6px" px="10px" py="2px" fontSize="12px" color="var(--text-muted)">
-                      {tech}
-                    </Box>
-                  ))}
-                </Flex>
-
-                <Flex gap="15px" pt="5px">
-                  <Link
-                    href="https://kwetustores.com/"
-                    target="_blank"
-                    fontSize="14px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiExternalLink} /> Live Site
-                  </Link>
-                </Flex>
-              </Flex>
-
-            </Grid>
-          </MotionBox>
-
-          {/* CASE STUDY 2: Malware Detection System */}
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="glass-card"
-            p={{ base: "25px", md: "45px" }}
-          >
-            <Grid templateColumns={{ base: "1fr", lg: "1.1fr 1fr" }} gap="40px" alignItems="center">
-              
-              {/* Case Study Details */}
-              <Flex direction="column" gap="18px" order={{ base: 2, lg: 1 }}>
-                <Flex align="center" gap="8px" flexWrap="wrap">
-                  <Badge bg="rgba(16, 185, 129, 0.1)" color="var(--highlight-accent)" border="1px solid rgba(16, 185, 129, 0.2)" px="8px" py="2px">AI & Cyber Security</Badge>
-                  <Badge bg="rgba(245, 158, 11, 0.1)" color="#f59e0b" border="1px solid rgba(245, 158, 11, 0.2)" px="8px" py="2px">Data Pipeline</Badge>
-                </Flex>
-
-                <Heading as="h3" fontSize={{ base: "24px", md: "28px" }} fontWeight="800" color="white">
-                  Malware Detection System
-                </Heading>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Challenge:</strong> Standard signature-based anti-virus tools fail to catch zero-day attacks and dynamic file obfuscation, requiring automated heuristic assessment pipelines to identify risks prior to deployment.
-                </Text>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Solution:</strong> Built an end-to-end Python-based malware classification pipeline utilizing machine learning algorithms. The system extracts structural features from incoming file formats, feeds them through trained classifiers, and evaluates danger risks.
-                </Text>
-
-                <Text fontSize="14px" color="var(--text-secondary)" lineHeight="1.6">
-                  <strong>Key Outcomes:</strong> Achieved high accuracy on experimental test models, identifying complex execution anomalies and presenting structured warning logs with low computational load.
-                </Text>
-
-                <Flex flexWrap="wrap" gap="8px" pt="10px">
-                  {["Python", "Scikit-learn", "Pandas", "Machine Learning", "Random Forest", "Data Extraction"].map((tech) => (
-                    <Box key={tech} bg="rgba(255,255,255,0.03)" border="1px solid rgba(255,255,255,0.06)" borderRadius="6px" px="10px" py="2px" fontSize="12px" color="var(--text-muted)">
-                      {tech}
-                    </Box>
-                  ))}
-                </Flex>
-
-                <Flex gap="15px" pt="5px">
-                  <Link
-                    href="https://malware-detector-x84s.onrender.com/"
-                    target="_blank"
-                    fontSize="14px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiExternalLink} /> Live Demo
-                  </Link>
-                </Flex>
-              </Flex>
-
-              {/* Visual Presentation (CSS ML Classification Interface) */}
-              <Flex direction="column" justify="center" align="center" w="100%" order={{ base: 1, lg: 2 }}>
-                <Box
-                  w="100%"
-                  maxW="480px"
-                  bg="rgba(0,0,0,0.4)"
-                  borderRadius="16px"
-                  p="25px"
-                  border="1px solid rgba(255,255,255,0.06)"
-                  position="relative"
-                  boxShadow="inset 0 0 20px rgba(127, 0, 255, 0.05)"
-                >
-                  <Text fontSize="10px" fontWeight="700" color="var(--secondary-accent)" letterSpacing="0.08em" mb="20px">
-                    HEURISTIC ML RISK ASSESSMENT ENGINE
-                  </Text>
-
-                  {/* Classifier View */}
-                  <Flex direction="column" gap="14px">
-                    <Box bg="rgba(255, 255, 255, 0.02)" border="1px solid rgba(255,255,255,0.04)" p="15px" borderRadius="10px">
-                      <Flex justify="space-between" align="center" mb="8px">
-                        <Text fontSize="11px" color="var(--text-muted)">TEST MODEL VERDICT</Text>
-                        <Badge colorScheme="red" variant="solid" fontSize="8px">Suspicious</Badge>
-                      </Flex>
-                      <Text fontSize="14px" fontWeight="700" color="white" fontFamily="monospace">unverified_installer.exe</Text>
-                      
-                      {/* Metric bar */}
-                      <Flex mt="10px" align="center" gap="10px">
-                        <Box flex="1" h="6px" bg="rgba(255,255,255,0.1)" borderRadius="full" overflow="hidden">
-                          <Box w="94%" h="100%" bg="linear-gradient(to right, var(--secondary-accent), #ef4444)" />
-                        </Box>
-                        <Text fontSize="11px" fontWeight="700" color="#ef4444">94.2% Risk</Text>
-                      </Flex>
-                    </Box>
-
-                    {/* Classifier metrics */}
-                    <Grid templateColumns="repeat(2, 1fr)" gap="10px">
-                      <Flex align="center" gap="8px" bg="rgba(255, 255, 255, 0.02)" border="1px solid rgba(255,255,255,0.04)" p="10px" borderRadius="8px">
-                        <Icon as={FiShield} color="var(--highlight-accent)" w="14px" h="14px" />
-                        <Box>
-                          <Text fontSize="9px" color="var(--text-muted)">ACCURACY</Text>
-                          <Text fontSize="12px" fontWeight="700" color="white">94.2%</Text>
-                        </Box>
-                      </Flex>
-                      
-                      <Flex align="center" gap="8px" bg="rgba(255, 255, 255, 0.02)" border="1px solid rgba(255,255,255,0.04)" p="10px" borderRadius="8px">
-                        <Icon as={FiActivity} color="var(--primary-accent)" w="14px" h="14px" />
-                        <Box>
-                          <Text fontSize="9px" color="var(--text-muted)">LATENCY</Text>
-                          <Text fontSize="12px" fontWeight="700" color="white">&lt; 120ms</Text>
-                        </Box>
-                      </Flex>
-                    </Grid>
-                  </Flex>
-                </Box>
-              </Flex>
-
-            </Grid>
-          </MotionBox>
-
+                </Grid>
+              </MotionBox>
+            );
+          })}
         </Flex>
 
-        {/* Additional Projects Section */}
-        <Box mt="60px">
+        {/* Additional Projects Section (5-7) */}
+        <Box mt="40px">
           <Heading
             fontSize={{ base: "24px", md: "30px" }}
             fontWeight="800"
@@ -313,169 +302,148 @@ const Projects = () => {
             Additional Projects
           </Heading>
 
-          <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap="25px">
-            
-            {/* Project 1: Fleet Compliance Management System */}
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass-card"
-              p="20px"
-              display="flex"
-              flexDirection="column"
-              justify="space-between"
-              height="100%"
-            >
-              <Box>
-                {/* Visual Header */}
-                <Box className="project-image-container" mb="18px" overflow="hidden" height="180px">
-                  <img
-                    src={cmvImage}
-                    alt="Fleet Compliance System"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
-                    className="additional-project-img"
-                  />
+          <Grid templateColumns={{ base: "1fr", md: "1fr 1fr", lg: "repeat(3, 1fr)" }} gap="25px">
+            {additionalProjects.map((project, idx) => (
+              <MotionBox
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="glass-card"
+                p="22px"
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+                height="100%"
+              >
+                <Box>
+                  {/* Visual Header */}
+                  {project.image ? (
+                    <Box className="project-image-container" mb="18px" overflow="hidden" height="170px">
+                      <img
+                        src={project.image}
+                        alt={project.shortTitle}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transition: "transform 0.4s",
+                        }}
+                        className="additional-project-img"
+                      />
+                    </Box>
+                  ) : (
+                    <Flex
+                      mb="18px"
+                      height="170px"
+                      borderRadius="14px"
+                      border="1px solid var(--border-color)"
+                      bg="rgba(0, 0, 0, 0.4)"
+                      direction="column"
+                      align="center"
+                      justify="center"
+                      gap="10px"
+                      px="16px"
+                      textAlign="center"
+                    >
+                      <Flex
+                        w="44px"
+                        h="44px"
+                        borderRadius="12px"
+                        bg="rgba(16, 185, 129, 0.1)"
+                        align="center"
+                        justify="center"
+                      >
+                        <Icon as={FiShield} color="var(--highlight-accent)" w="22px" h="22px" />
+                      </Flex>
+                      <Text fontSize="11px" fontWeight="700" color="var(--highlight-accent)" letterSpacing="0.08em">
+                        PYTHON ML PIPELINE + FLASK APP
+                      </Text>
+                      <Text fontSize="12px" color="var(--text-muted)">
+                        PE header classification with Scikit-learn & XGBoost
+                      </Text>
+                    </Flex>
+                  )}
+
+                  <Flex justify="space-between" align="flex-start" gap="8px" mb="10px">
+                    <Flex align="center" gap="8px">
+                      <Icon
+                        as={additionalProjectIcons[project.id] || FiLayers}
+                        color="var(--primary-accent)"
+                        flexShrink={0}
+                      />
+                      <Heading as="h4" fontSize="17px" fontWeight="700" color="white" lineHeight="1.3">
+                        {project.title}
+                      </Heading>
+                    </Flex>
+                    <Badge colorScheme={project.statusColor} fontSize="9px" flexShrink={0}>
+                      {project.categoryBadge}
+                    </Badge>
+                  </Flex>
+
+                  <Text fontSize="13px" color="var(--text-secondary)" lineHeight="1.6" mb="16px">
+                    {project.intro}
+                  </Text>
                 </Box>
 
-                <Flex justify="space-between" align="center" mb="10px">
-                  <Flex align="center" gap="8px">
-                    <Icon as={FiTruck} color="var(--primary-accent)" />
-                    <Heading as="h4" fontSize="18px" fontWeight="700" color="white">
-                      Fleet Compliance System
-                    </Heading>
+                <Box>
+                  <Flex flexWrap="wrap" gap="6px" mb="16px">
+                    {project.technologies.map((tech) => (
+                      <Box
+                        key={tech}
+                        bg="rgba(255,255,255,0.03)"
+                        border="1px solid rgba(255,255,255,0.05)"
+                        px="8px"
+                        py="2px"
+                        borderRadius="4px"
+                        fontSize="10px"
+                        color="var(--text-muted)"
+                      >
+                        {tech}
+                      </Box>
+                    ))}
                   </Flex>
-                  <Badge colorScheme="cyan" fontSize="9px">Full Stack</Badge>
-                </Flex>
 
-                <Text fontSize="13px" color="var(--text-secondary)" lineHeight="1.6" mb="15px">
-                  A comprehensive portal facilitating truck drivers to manage operations, log hours, and track routes in alignment with ELD and DOT compliance guidelines.
-                </Text>
-              </Box>
-
-              <Box>
-                <Flex flexWrap="wrap" gap="6px" mb="15px">
-                  {["React", "Typescript", "Django", "PostgreSQL", "Regulatory Compliance"].map((tech) => (
-                    <Box key={tech} bg="rgba(255,255,255,0.03)" border="1px solid rgba(255,255,255,0.05)" px="8px" py="2px" borderRadius="4px" fontSize="10px" color="var(--text-muted)">
-                      {tech}
-                    </Box>
-                  ))}
-                </Flex>
-
-                <Flex gap="12px">
-                  <Link
-                    href="https://github.com/MatoG50/CMV-LOG"
-                    target="_blank"
-                    fontSize="13px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiGithub} /> Github
-                  </Link>
-                  <Link
-                    href="https://cmv-log.vercel.app/"
-                    target="_blank"
-                    fontSize="13px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiExternalLink} /> Live Demo
-                  </Link>
-                </Flex>
-              </Box>
-            </MotionBox>
-
-            {/* Project 2: GameHub */}
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass-card"
-              p="20px"
-              display="flex"
-              flexDirection="column"
-              justify="space-between"
-              height="100%"
-            >
-              <Box>
-                {/* Visual Header */}
-                <Box className="project-image-container" mb="18px" overflow="hidden" height="180px">
-                  <img
-                    src={gamehubImage}
-                    alt="GameHub"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
-                    className="additional-project-img"
-                  />
+                  <Flex gap="14px" flexWrap="wrap">
+                    {project.githubUrl && (
+                      <Link
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        fontSize="13px"
+                        fontWeight="600"
+                        color="white"
+                        display="inline-flex"
+                        alignItems="center"
+                        gap="6px"
+                        _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
+                      >
+                        <Icon as={FiGithub} /> GitHub
+                      </Link>
+                    )}
+                    {project.liveUrl && (
+                      <Link
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        fontSize="13px"
+                        fontWeight="600"
+                        color="white"
+                        display="inline-flex"
+                        alignItems="center"
+                        gap="6px"
+                        _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
+                      >
+                        <Icon as={FiExternalLink} /> Live Demo
+                      </Link>
+                    )}
+                  </Flex>
                 </Box>
-
-                <Flex justify="space-between" align="center" mb="10px">
-                  <Flex align="center" gap="8px">
-                    <Icon as={FiPlay} color="var(--secondary-accent)" />
-                    <Heading as="h4" fontSize="18px" fontWeight="700" color="white">
-                      GameHub
-                    </Heading>
-                  </Flex>
-                  <Badge colorScheme="purple" fontSize="9px">Frontend App</Badge>
-                </Flex>
-
-                <Text fontSize="13px" color="var(--text-secondary)" lineHeight="1.6" mb="15px">
-                  A high-end discovery dashboard that aggregates trending and highly-rated video games across multiple platforms, implementing advanced frontend caching and dynamic UI filtering.
-                </Text>
-              </Box>
-
-              <Box>
-                <Flex flexWrap="wrap" gap="6px" mb="15px">
-                  {["React", "TypeScript", "REST APIs", "Data Aggregation", "UX Design"].map((tech) => (
-                    <Box key={tech} bg="rgba(255,255,255,0.03)" border="1px solid rgba(255,255,255,0.05)" px="8px" py="2px" borderRadius="4px" fontSize="10px" color="var(--text-muted)">
-                      {tech}
-                    </Box>
-                  ))}
-                </Flex>
-
-                <Flex gap="12px">
-                  <Link
-                    href="https://github.com/MatoG50/Game-hub"
-                    target="_blank"
-                    fontSize="13px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiGithub} /> Github
-                  </Link>
-                  <Link
-                    href="https://game-hub-mgk.vercel.app/"
-                    target="_blank"
-                    fontSize="13px"
-                    fontWeight="600"
-                    color="white"
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="6px"
-                    _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
-                  >
-                    <Icon as={FiExternalLink} /> Live Demo
-                  </Link>
-                </Flex>
-              </Box>
-            </MotionBox>
-
+              </MotionBox>
+            ))}
           </Grid>
         </Box>
-
       </Flex>
     </Box>
   );

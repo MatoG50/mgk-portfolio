@@ -29,6 +29,8 @@ const Footer = () => {
           <Link
             href="https://github.com/MatoG50"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
             color="var(--text-muted)"
             _hover={{ color: "white" }}
             transition="color 0.2s"
@@ -38,6 +40,8 @@ const Footer = () => {
           <Link
             href="https://www.linkedin.com/in/martin-githinji-k/"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
             color="var(--text-muted)"
             _hover={{ color: "white" }}
             transition="color 0.2s"

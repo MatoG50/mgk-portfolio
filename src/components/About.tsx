@@ -1,43 +1,18 @@
-import { Box, Flex, Grid, Heading, Text, Icon } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Text, Icon, Badge } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FiBookOpen, FiCpu, FiLayers, FiDatabase, FiTerminal, FiGlobe } from "react-icons/fi";
+import { FiBookOpen, FiCpu, FiLayers, FiDatabase, FiGlobe, FiAward } from "react-icons/fi";
+import { aboutContent, educationList, skillCategories } from "../data/portfolioData";
 
 const MotionBox = motion(Box);
 
-const About = () => {
-  const skillCategories = [
-    {
-      title: "Frontend",
-      icon: FiGlobe,
-      color: "var(--primary-accent)",
-      skills: ["React", "TypeScript", "Angular", "JavaScript", "HTML", "CSS"],
-    },
-    {
-      title: "Backend",
-      icon: FiLayers,
-      color: "var(--secondary-accent)",
-      skills: ["Node.js", "Express", "REST APIs"],
-    },
-    {
-      title: "Databases",
-      icon: FiDatabase,
-      color: "#f59e0b",
-      skills: ["PostgreSQL", "MySQL"],
-    },
-    {
-      title: "AI & Data Science",
-      icon: FiCpu,
-      color: "var(--highlight-accent)",
-      skills: ["Python", "Pandas", "Scikit-learn", "Machine Learning"],
-    },
-    {
-      title: "Tools & DevOps",
-      icon: FiTerminal,
-      color: "#ec4899",
-      skills: ["Git", "Docker", "GitHub"],
-    },
-  ];
+const categoryIcons: Record<string, typeof FiGlobe> = {
+  frontend: FiGlobe,
+  backend: FiLayers,
+  "databases-tools": FiDatabase,
+  "ai-app-dev": FiCpu,
+};
 
+const About = () => {
   return (
     <Box
       id="about"
@@ -57,88 +32,112 @@ const About = () => {
             letterSpacing="-0.02em"
             mb="15px"
           >
-            Engineering with Purpose.
+            {aboutContent.heading}
           </Heading>
-          <Box w="60px" h="4px" bg="linear-gradient(90deg, var(--primary-accent), var(--secondary-accent))" borderRadius="2px" />
+          <Box
+            w="60px"
+            h="4px"
+            bg="linear-gradient(90deg, var(--primary-accent), var(--secondary-accent))"
+            borderRadius="2px"
+          />
         </Box>
 
         {/* About Grid */}
-        <Grid templateColumns={{ base: "1fr", lg: "1.2fr 1fr" }} gap="40px" alignItems="start">
-          {/* Left Block: Bio & Philosophy */}
-          <Flex direction="column" gap="25px">
+        <Grid templateColumns={{ base: "1fr", lg: "1.15fr 1fr" }} gap="40px" alignItems="start">
+          {/* Left Block: Bio & Education */}
+          <Flex direction="column" gap="22px">
             <Text
-              fontSize={{ base: "17px", md: "19px" }}
+              fontSize={{ base: "17px", md: "18px" }}
               lineHeight="1.7"
               color="var(--text-primary)"
               fontWeight="500"
             >
-              I build reliable, scalable web applications and backend systems that solve real business problems.
+              {aboutContent.paragraphs[0]}
             </Text>
 
-            <Text fontSize="15px" lineHeight="1.7" color="var(--text-secondary)">
-              My work spans full-stack development, API integrations, and data-driven applications, with a focus on clean architecture and maintainable code. I enjoy turning complex requirements into simple, functional systems, from e-commerce platforms to compliance tools and data-driven applications.
-            </Text>
+            {aboutContent.paragraphs.slice(1).map((paragraph) => (
+              <Text key={paragraph} fontSize="15px" lineHeight="1.7" color="var(--text-secondary)">
+                {paragraph}
+              </Text>
+            ))}
 
-            <Text fontSize="15px" lineHeight="1.7" color="var(--text-secondary)">
-              I’m currently pursuing a Master’s in Software Engineering at Quantic, where I continue strengthening my understanding of system design, software architecture, and applied computing.
-            </Text>
-
-            {/* MSc Highlight Box */}
-            <MotionBox
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass-card"
-              p="25px"
-              borderLeft="4px solid var(--primary-accent)"
-              bg="rgba(0, 242, 254, 0.02)"
-            >
-              <Flex gap="16px" align="flex-start">
-                <Flex
-                  w="46px"
-                  h="46px"
-                  bg="rgba(0, 242, 254, 0.08)"
-                  borderRadius="12px"
-                  align="center"
-                  justify="center"
-                  flexShrink={0}
+            {/* Education Cards */}
+            <Flex direction="column" gap="16px" mt="6px">
+              {educationList.map((edu, idx) => (
+                <MotionBox
+                  key={edu.degree}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="glass-card"
+                  p="22px"
+                  borderLeft={`4px solid ${idx === 0 ? "var(--primary-accent)" : "var(--secondary-accent)"}`}
+                  bg={idx === 0 ? "rgba(0, 242, 254, 0.02)" : "rgba(127, 0, 255, 0.02)"}
                 >
-                  <Icon as={FiBookOpen} color="var(--primary-accent)" w="22px" h="22px" />
-                </Flex>
-                <Box>
-                  <Text fontSize="12px" fontWeight="700" color="var(--primary-accent)" letterSpacing="0.05em">
-                    ACADEMIC EXCELLENCE
-                  </Text>
-                  <Heading as="h4" fontSize="16px" fontWeight="700" color="white" mt="4px" mb="4px">
-                    Master of Science in Software Engineering
-                  </Heading>
-                  <Text fontSize="14px" color="var(--text-secondary)" fontWeight="600">
-                    Quantic School of Business and Technology
-                  </Text>
-                  <Text fontSize="12px" color="var(--text-muted)" mt="4px">
-                    Active Student • Focus on Advanced Systems, Scalable Architectures & Data Structures
-                  </Text>
-                </Box>
-              </Flex>
-            </MotionBox>
+                  <Flex gap="16px" align="flex-start">
+                    <Flex
+                      w="44px"
+                      h="44px"
+                      bg={idx === 0 ? "rgba(0, 242, 254, 0.08)" : "rgba(127, 0, 255, 0.08)"}
+                      borderRadius="12px"
+                      align="center"
+                      justify="center"
+                      flexShrink={0}
+                    >
+                      <Icon
+                        as={idx === 0 ? FiAward : FiBookOpen}
+                        color={idx === 0 ? "var(--primary-accent)" : "var(--secondary-accent)"}
+                        w="20px"
+                        h="20px"
+                      />
+                    </Flex>
+                    <Box flex="1">
+                      <Flex justify="space-between" align="center" flexWrap="wrap" gap="8px">
+                        <Text
+                          fontSize="11px"
+                          fontWeight="700"
+                          color={idx === 0 ? "var(--primary-accent)" : "var(--secondary-accent)"}
+                          letterSpacing="0.05em"
+                          textTransform="uppercase"
+                        >
+                          EDUCATION | {edu.period}
+                        </Text>
+                        <Badge colorScheme="green" fontSize="10px" px="8px" py="1px" borderRadius="4px">
+                          {edu.status}
+                        </Badge>
+                      </Flex>
+                      <Heading as="h4" fontSize="16px" fontWeight="700" color="white" mt="4px" mb="4px">
+                        {edu.degree}
+                      </Heading>
+                      <Text fontSize="14px" color="var(--text-secondary)" fontWeight="600">
+                        {edu.institution}
+                      </Text>
+                      <Text fontSize="12px" color="var(--text-muted)" mt="6px" lineHeight="1.55">
+                        {edu.details}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </MotionBox>
+              ))}
+            </Flex>
           </Flex>
 
           {/* Right Block: Core Skills Stack */}
-          <Flex direction="column" gap="25px">
+          <Flex direction="column" gap="22px">
             <Box>
               <Heading as="h3" fontSize="20px" fontWeight="700" mb="8px" color="white">
-                Technical Expertise
+                Skills & Technologies
               </Heading>
               <Text fontSize="13px" color="var(--text-muted)">
-                Clean structures, grouped by ecosystem. No arbitrary rating scales.
+                Organized by domain and grounded in actual projects and engineering work.
               </Text>
             </Box>
 
             <Flex direction="column" gap="16px">
               {skillCategories.map((cat, idx) => (
                 <MotionBox
-                  key={cat.title}
+                  key={cat.id}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -146,36 +145,43 @@ const About = () => {
                   bg="rgba(255, 255, 255, 0.02)"
                   border="1px solid rgba(255, 255, 255, 0.05)"
                   borderRadius="14px"
-                  p="15px 20px"
+                  p="18px 20px"
                   _hover={{ borderColor: cat.color }}
                   style={{ transition: "border-color 0.2s" }}
                 >
-                  <Flex align="center" justify="space-between" flexWrap="wrap" gap="10px">
+                  <Flex direction="column" gap="12px">
                     <Flex align="center" gap="10px">
-                      <Icon as={cat.icon} color={cat.color} w="16px" h="16px" />
+                      <Icon as={categoryIcons[cat.id] || FiGlobe} color={cat.color} w="16px" h="16px" />
                       <Text fontSize="14px" fontWeight="700" color="white">
                         {cat.title}
                       </Text>
                     </Flex>
 
-                    <Flex gap="6px" flexWrap="wrap">
+                    <Flex gap="7px" flexWrap="wrap">
                       {cat.skills.map((skill) => (
                         <Box
-                          key={skill}
+                          key={skill.name}
                           bg="rgba(255, 255, 255, 0.03)"
                           border="1px solid rgba(255, 255, 255, 0.06)"
                           borderRadius="6px"
                           px="10px"
-                          py="3px"
+                          py="4px"
                           fontSize="12px"
-                          color="var(--text-secondary)"
+                          color={skill.note ? "var(--text-muted)" : "var(--text-secondary)"}
                           _hover={{ color: "white", bg: "rgba(255, 255, 255, 0.08)" }}
                           transition="all 0.2s"
                         >
-                          {skill}
+                          {skill.name}
+                          {skill.note ? ` (${skill.note})` : ""}
                         </Box>
                       ))}
                     </Flex>
+
+                    {cat.footnote && (
+                      <Text fontSize="11px" color="var(--text-muted)" lineHeight="1.5">
+                        {cat.footnote}
+                      </Text>
+                    )}
                   </Flex>
                 </MotionBox>
               ))}

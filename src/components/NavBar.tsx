@@ -86,6 +86,13 @@ const NavBar = () => {
             About
           </Link>
           <Link
+            onClick={() => scrollToSection("experience")}
+            _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
+            transition="color 0.2s"
+          >
+            Experience
+          </Link>
+          <Link
             onClick={() => scrollToSection("projects")}
             _hover={{ color: "var(--primary-accent)", textDecoration: "none" }}
             transition="color 0.2s"

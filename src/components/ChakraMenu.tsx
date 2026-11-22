@@ -56,6 +56,15 @@ const ChakraMenu: React.FC<ChakraMenuProps> = ({ scrollToSection }) => (
         color='white'
         borderRadius='8px'
         _hover={{ bg: 'rgba(255, 255, 255, 0.05)', color: 'var(--primary-accent)' }}
+        onClick={() => scrollToSection('experience')}
+      >
+        Experience
+      </MenuItem>
+      <MenuItem
+        bg='transparent'
+        color='white'
+        borderRadius='8px'
+        _hover={{ bg: 'rgba(255, 255, 255, 0.05)', color: 'var(--primary-accent)' }}
         onClick={() => scrollToSection('projects')}
       >
         Projects

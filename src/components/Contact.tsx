@@ -1,12 +1,12 @@
 import { Box, Flex, Grid, Heading, Text, Link, Icon, useClipboard, useToast, IconButton } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiCopy, FiCheck, FiExternalLink } from "react-icons/fi";
+import { contactContent } from "../data/portfolioData";
 
 const MotionBox = motion(Box);
 
 const Contact = () => {
-  const email = "matog50@gmail.com";
-  const { hasCopied, onCopy } = useClipboard(email);
+  const { hasCopied, onCopy } = useClipboard(contactContent.email);
   const toast = useToast();
 
   const handleCopy = () => {
@@ -29,7 +29,7 @@ const Contact = () => {
       maxW="1200px"
       mx="auto"
     >
-      <span className="section-tag">03 / CONNECT</span>
+      <span className="section-tag">04 / CONNECT</span>
 
       <MotionBox
         initial={{ opacity: 0, y: 30 }}
@@ -41,7 +41,6 @@ const Contact = () => {
         mt="20px"
       >
         <Grid templateColumns={{ base: "1fr", lg: "1.1fr 1fr" }} gap="50px" alignItems="center">
-
           {/* Left Column: Heading & Paragraph */}
           <Flex direction="column" gap="20px">
             <Heading
@@ -51,27 +50,29 @@ const Contact = () => {
               color="white"
               letterSpacing="-0.02em"
             >
-              Let's build something <br />
-              <span className="gradient-text-purple" style={{ fontWeight: "800", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>remarkable.</span>
+              {contactContent.headingLine1} <br />
+              <span
+                className="gradient-text-purple"
+                style={{ fontWeight: "800", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+              >
+                {contactContent.headingHighlight}
+              </span>
             </Heading>
 
             <Text fontSize="15px" color="var(--text-secondary)" lineHeight="1.7">
-              Let’s build something impactful together.
-              <br />
-              Open to software engineering opportunities and collaborations.
+              {contactContent.description}
             </Text>
 
             <Flex align="center" gap="10px" mt="10px">
               <Icon as={FiMapPin} color="var(--primary-accent)" w="16px" h="16px" />
               <Text fontSize="14px" color="var(--text-muted)" fontWeight="500">
-                Nairobi, Kenya • Remote / Hybrid
+                {contactContent.location}
               </Text>
             </Flex>
           </Flex>
 
           {/* Right Column: Interaction cards */}
           <Flex direction="column" gap="16px">
-
             {/* Email card */}
             <Box
               bg="rgba(255, 255, 255, 0.02)"
@@ -88,9 +89,17 @@ const Contact = () => {
                     <Icon as={FiMail} color="var(--primary-accent)" w="18px" h="18px" />
                   </Flex>
                   <Box>
-                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">EMAIL DIRECT</Text>
-                    <Link href={`mailto:${email}`} fontSize="14px" fontWeight="700" color="white" _hover={{ color: "var(--primary-accent)" }}>
-                      {email}
+                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
+                      EMAIL DIRECT
+                    </Text>
+                    <Link
+                      href={`mailto:${contactContent.email}`}
+                      fontSize="14px"
+                      fontWeight="700"
+                      color="white"
+                      _hover={{ color: "var(--primary-accent)" }}
+                    >
+                      {contactContent.email}
                     </Link>
                   </Box>
                 </Flex>
@@ -108,8 +117,9 @@ const Contact = () => {
 
             {/* LinkedIn card */}
             <Link
-              href="https://www.linkedin.com/in/martin-githinji-k/"
+              href={contactContent.linkedinUrl}
               target="_blank"
+              rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
               <Box
@@ -126,8 +136,12 @@ const Contact = () => {
                       <Icon as={FiLinkedin} color="var(--secondary-accent)" w="18px" h="18px" />
                     </Flex>
                     <Box>
-                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">PROFESSIONAL NETWORK</Text>
-                      <Text fontSize="14px" fontWeight="700" color="white">martin-githinji-k</Text>
+                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
+                        PROFESSIONAL NETWORK
+                      </Text>
+                      <Text fontSize="14px" fontWeight="700" color="white">
+                        {contactContent.linkedinHandle}
+                      </Text>
                     </Box>
                   </Flex>
                   <Icon as={FiExternalLink} color="var(--text-muted)" />
@@ -137,8 +151,9 @@ const Contact = () => {
 
             {/* GitHub card */}
             <Link
-              href="https://github.com/MatoG50"
+              href={contactContent.githubUrl}
               target="_blank"
+              rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
               <Box
@@ -155,8 +170,12 @@ const Contact = () => {
                       <Icon as={FiGithub} color="white" w="18px" h="18px" />
                     </Flex>
                     <Box>
-                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">CODE REPOSITORIES</Text>
-                      <Text fontSize="14px" fontWeight="700" color="white">MatoG50</Text>
+                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
+                        CODE REPOSITORIES
+                      </Text>
+                      <Text fontSize="14px" fontWeight="700" color="white">
+                        {contactContent.githubHandle}
+                      </Text>
                     </Box>
                   </Flex>
                   <Icon as={FiExternalLink} color="var(--text-muted)" />
@@ -179,22 +198,27 @@ const Contact = () => {
                     <Icon as={FiPhone} color="var(--highlight-accent)" w="18px" h="18px" />
                   </Flex>
                   <Box>
-                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">DIRECT PHONE</Text>
-                    <Link href="tel:+254724979592" fontSize="14px" fontWeight="700" color="white" _hover={{ color: "var(--highlight-accent)" }}>
-                      +254 724 979 592
+                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
+                      DIRECT PHONE
+                    </Text>
+                    <Link
+                      href={contactContent.phoneHref}
+                      fontSize="14px"
+                      fontWeight="700"
+                      color="white"
+                      _hover={{ color: "var(--highlight-accent)" }}
+                    >
+                      {contactContent.phone}
                     </Link>
                   </Box>
                 </Flex>
               </Flex>
             </Box>
-
           </Flex>
         </Grid>
       </MotionBox>
     </Box>
   );
 };
-
-
 
 export default Contact;
