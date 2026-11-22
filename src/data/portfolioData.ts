@@ -279,7 +279,7 @@ export const projectsList: ProjectItem[] = [
     ongoingWork:
       "Active pre-pilot development: finalizing finance branch integration, pilot checkout and gate check-in validation, organizer wizard mobile refinements, refund delegation, and future regional payment options.",
     technologies: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "Redis", "Stripe"],
-    liveUrl: "https://outside.vip",
+    liveUrl: "https://out-side.vip",
     architectureTitle: "TICKETING & RBAC ARCHITECTURE",
     architectureNodes: [
       {

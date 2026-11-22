@@ -10,21 +10,25 @@ const theme = extendTheme({
   fonts: {
     heading: `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`,
     body: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`,
+    mono: `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`,
   },
   colors: {
     brand: {
-      black: '#060608',
-      card: '#0d0d12',
-      cyan: '#00f2fe',
-      purple: '#7f00ff',
-      emerald: '#10b981',
+      canvas: '#07080D',
+      surface: '#0F121B',
+      elevated: '#151926',
+      cyan: '#22D3EE',
+      indigo: '#818CF8',
+      emerald: '#34D399',
+      amber: '#F59E0B',
+      rose: '#FB7185',
     },
   },
   styles: {
     global: {
       body: {
-        bg: '#060608',
-        color: '#f8fafc',
+        bg: '#07080D',
+        color: '#F8FAFC',
       },
     },
   },

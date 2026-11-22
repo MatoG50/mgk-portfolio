@@ -1,30 +1,27 @@
 import { Box } from '@chakra-ui/react';
+import { MotionConfig } from 'framer-motion';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import About from './components/About';
-import Experience from './components/Experience';
 import Projects from './components/Projects';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
-      <NavBar />
-      <Box className="main-container" paddingTop="60px">
-        {/* Ambient background glows for SaaS aesthetic */}
-        <div className="ambient-glow-1"></div>
-        <div className="ambient-glow-2"></div>
-        <div className="grid-overlay"></div>
-        
-        <Home />
-        <About />
-        <Experience />
-        <Projects />
-        <Contact />
+    <MotionConfig reducedMotion="user">
+      <Box className="main-container">
+        <div className="studio-backdrop" aria-hidden="true" />
+        <NavBar />
+        <Box as="main" position="relative" zIndex="1">
+          <Home />
+          <Projects />
+          <About />
+          <Contact />
+        </Box>
         <Footer />
       </Box>
-    </>
+    </MotionConfig>
   );
 }
 

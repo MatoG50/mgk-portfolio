@@ -1,6 +1,15 @@
-import { Box, Flex, Grid, Heading, Text, Link, Icon, useClipboard, useToast, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Link, Icon, useClipboard, useToast } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiCopy, FiCheck, FiExternalLink } from "react-icons/fi";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiLinkedin,
+  FiGithub,
+  FiCopy,
+  FiCheck,
+  FiArrowUpRight,
+} from "react-icons/fi";
 import { contactContent } from "../data/portfolioData";
 
 const MotionBox = motion(Box);
@@ -12,10 +21,10 @@ const Contact = () => {
   const handleCopy = () => {
     onCopy();
     toast({
-      title: "Email Copied",
-      description: "Email address has been copied to your clipboard.",
+      title: "Email copied",
+      description: `${contactContent.email} copied to clipboard.`,
       status: "success",
-      duration: 3000,
+      duration: 2500,
       isClosable: true,
       position: "bottom-right",
     });
@@ -23,199 +32,179 @@ const Contact = () => {
 
   return (
     <Box
+      as="section"
       id="contact"
-      py={{ base: "80px", md: "100px" }}
-      px={{ base: "20px", md: "60px" }}
-      maxW="1200px"
-      mx="auto"
+      py={{ base: "76px", md: "112px" }}
+      px={{ base: "20px", md: "40px" }}
+      borderTop="1px solid rgba(255, 255, 255, 0.06)"
     >
-      <span className="section-tag">04 / CONNECT</span>
-
       <MotionBox
-        initial={{ opacity: 0, y: 30 }}
+        maxW="920px"
+        mx="auto"
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="glass-card"
-        p={{ base: "25px", md: "50px" }}
-        mt="20px"
+        viewport={{ once: true, amount: "some" }}
+        transition={{ duration: 0.5 }}
+        position="relative"
+        borderRadius="28px"
+        p={{ base: "32px 24px", md: "56px 48px" }}
+        bg="linear-gradient(145deg, rgba(16, 22, 38, 0.92), rgba(10, 12, 22, 0.95))"
+        border="1px solid rgba(255, 255, 255, 0.1)"
+        overflow="hidden"
+        textAlign="center"
       >
-        <Grid templateColumns={{ base: "1fr", lg: "1.1fr 1fr" }} gap="50px" alignItems="center">
-          {/* Left Column: Heading & Paragraph */}
-          <Flex direction="column" gap="20px">
-            <Heading
-              fontSize={{ base: "32px", md: "46px" }}
-              fontWeight="800"
-              lineHeight="1.15"
-              color="white"
-              letterSpacing="-0.02em"
+        {/* Subtle Top Center Spotlight */}
+        <Box
+          position="absolute"
+          top="-80px"
+          left="50%"
+          transform="translateX(-50%)"
+          w="380px"
+          h="200px"
+          bg="radial-gradient(circle, rgba(34, 211, 238, 0.2), rgba(129, 140, 248, 0.12) 45%, transparent 72%)"
+          filter="blur(24px)"
+          pointerEvents="none"
+        />
+
+        <Flex direction="column" align="center" gap="22px" position="relative" zIndex="1">
+          <span className="section-eyebrow">03 / Connect</span>
+
+          <Heading
+            as="h2"
+            fontFamily="var(--font-heading)"
+            fontSize={{ base: "32px", sm: "42px", md: "50px" }}
+            fontWeight="800"
+            lineHeight="1.08"
+            letterSpacing="-0.035em"
+            color="var(--text-primary)"
+            maxW="620px"
+          >
+            {contactContent.headingLine1}{" "}
+            <Box as="span" className="headline-accent">
+              {contactContent.headingHighlight}
+            </Box>
+          </Heading>
+
+          <Text fontSize={{ base: "15.5px", md: "17px" }} color="var(--text-secondary)" lineHeight="1.65" maxW="500px">
+            {contactContent.description}
+          </Text>
+
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            gap="12px"
+            pt="6px"
+            w={{ base: "100%", sm: "auto" }}
+            justify="center"
+          >
+            <Link
+              href={`mailto:${contactContent.email}`}
+              className="btn-showcase-primary"
+              color="#07080D"
+              _hover={{ color: "#07080D", textDecoration: "none" }}
+              _active={{ color: "#07080D" }}
+              _focus={{ color: "#07080D" }}
             >
-              {contactContent.headingLine1} <br />
-              <span
-                className="gradient-text-purple"
-                style={{ fontWeight: "800", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-              >
-                {contactContent.headingHighlight}
-              </span>
-            </Heading>
+              <Icon as={FiMail} w="15px" h="15px" color="#07080D" />
+              Email Me
+              <Icon as={FiArrowUpRight} w="15px" h="15px" color="#07080D" />
+            </Link>
 
-            <Text fontSize="15px" color="var(--text-secondary)" lineHeight="1.7">
-              {contactContent.description}
-            </Text>
-
-            <Flex align="center" gap="10px" mt="10px">
-              <Icon as={FiMapPin} color="var(--primary-accent)" w="16px" h="16px" />
-              <Text fontSize="14px" color="var(--text-muted)" fontWeight="500">
-                {contactContent.location}
-              </Text>
-            </Flex>
+            <button type="button" onClick={handleCopy} className="btn-showcase-secondary">
+              <Icon
+                as={hasCopied ? FiCheck : FiCopy}
+                w="15px"
+                h="15px"
+                color={hasCopied ? "var(--accent-emerald)" : "var(--accent-cyan)"}
+              />
+              {hasCopied ? "Copied" : contactContent.email}
+            </button>
           </Flex>
 
-          {/* Right Column: Interaction cards */}
-          <Flex direction="column" gap="16px">
-            {/* Email card */}
-            <Box
-              bg="rgba(255, 255, 255, 0.02)"
-              border="1px solid rgba(255, 255, 255, 0.05)"
-              p="18px"
-              borderRadius="14px"
-              position="relative"
-              _hover={{ borderColor: "var(--primary-accent)" }}
-              transition="border-color 0.2s"
-            >
-              <Flex justify="space-between" align="center">
-                <Flex align="center" gap="12px">
-                  <Flex w="36px" h="36px" bg="rgba(0, 242, 254, 0.08)" borderRadius="8px" align="center" justify="center">
-                    <Icon as={FiMail} color="var(--primary-accent)" w="18px" h="18px" />
-                  </Flex>
-                  <Box>
-                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
-                      EMAIL DIRECT
-                    </Text>
-                    <Link
-                      href={`mailto:${contactContent.email}`}
-                      fontSize="14px"
-                      fontWeight="700"
-                      color="white"
-                      _hover={{ color: "var(--primary-accent)" }}
-                    >
-                      {contactContent.email}
-                    </Link>
-                  </Box>
-                </Flex>
-                <IconButton
-                  aria-label="Copy Email"
-                  onClick={handleCopy}
-                  size="sm"
-                  bg="rgba(255, 255, 255, 0.04)"
-                  _hover={{ bg: "rgba(255, 255, 255, 0.08)" }}
-                  color="var(--text-secondary)"
-                  icon={<Icon as={hasCopied ? FiCheck : FiCopy} color={hasCopied ? "var(--highlight-accent)" : "inherit"} />}
-                />
-              </Flex>
-            </Box>
-
-            {/* LinkedIn card */}
+          {/* Compact Inline Direct Channels */}
+          <Flex
+            justify="center"
+            align="center"
+            gap={{ base: "10px", sm: "14px" }}
+            flexWrap="wrap"
+            pt="18px"
+            mt="6px"
+            borderTop="1px solid rgba(255, 255, 255, 0.08)"
+            w="100%"
+          >
             <Link
               href={contactContent.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
+              display="inline-flex"
+              alignItems="center"
+              gap="7px"
+              px="14px"
+              py="7px"
+              borderRadius="999px"
+              bg="rgba(255,255,255,0.03)"
+              border="1px solid rgba(255,255,255,0.08)"
+              fontSize="13px"
+              color="var(--text-secondary)"
+              _hover={{ color: "white", borderColor: "rgba(255,255,255,0.2)", textDecoration: "none" }}
+              transition="all 0.18s ease"
             >
-              <Box
-                bg="rgba(255, 255, 255, 0.02)"
-                border="1px solid rgba(255, 255, 255, 0.05)"
-                p="18px"
-                borderRadius="14px"
-                _hover={{ borderColor: "var(--secondary-accent)", bg: "rgba(255, 255, 255, 0.03)" }}
-                transition="all 0.2s"
-              >
-                <Flex align="center" justify="space-between">
-                  <Flex align="center" gap="12px">
-                    <Flex w="36px" h="36px" bg="rgba(127, 0, 255, 0.08)" borderRadius="8px" align="center" justify="center">
-                      <Icon as={FiLinkedin} color="var(--secondary-accent)" w="18px" h="18px" />
-                    </Flex>
-                    <Box>
-                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
-                        PROFESSIONAL NETWORK
-                      </Text>
-                      <Text fontSize="14px" fontWeight="700" color="white">
-                        {contactContent.linkedinHandle}
-                      </Text>
-                    </Box>
-                  </Flex>
-                  <Icon as={FiExternalLink} color="var(--text-muted)" />
-                </Flex>
-              </Box>
+              <Icon as={FiLinkedin} w="14px" h="14px" color="var(--accent-indigo)" />
+              LinkedIn
             </Link>
 
-            {/* GitHub card */}
             <Link
               href={contactContent.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
+              display="inline-flex"
+              alignItems="center"
+              gap="7px"
+              px="14px"
+              py="7px"
+              borderRadius="999px"
+              bg="rgba(255,255,255,0.03)"
+              border="1px solid rgba(255,255,255,0.08)"
+              fontSize="13px"
+              color="var(--text-secondary)"
+              _hover={{ color: "white", borderColor: "rgba(255,255,255,0.2)", textDecoration: "none" }}
+              transition="all 0.18s ease"
             >
-              <Box
-                bg="rgba(255, 255, 255, 0.02)"
-                border="1px solid rgba(255, 255, 255, 0.05)"
-                p="18px"
-                borderRadius="14px"
-                _hover={{ borderColor: "white", bg: "rgba(255, 255, 255, 0.03)" }}
-                transition="all 0.2s"
-              >
-                <Flex align="center" justify="space-between">
-                  <Flex align="center" gap="12px">
-                    <Flex w="36px" h="36px" bg="rgba(255, 255, 255, 0.05)" borderRadius="8px" align="center" justify="center">
-                      <Icon as={FiGithub} color="white" w="18px" h="18px" />
-                    </Flex>
-                    <Box>
-                      <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
-                        CODE REPOSITORIES
-                      </Text>
-                      <Text fontSize="14px" fontWeight="700" color="white">
-                        {contactContent.githubHandle}
-                      </Text>
-                    </Box>
-                  </Flex>
-                  <Icon as={FiExternalLink} color="var(--text-muted)" />
-                </Flex>
-              </Box>
+              <Icon as={FiGithub} w="14px" h="14px" color="white" />
+              GitHub
             </Link>
 
-            {/* Telephone card */}
-            <Box
-              bg="rgba(255, 255, 255, 0.02)"
-              border="1px solid rgba(255, 255, 255, 0.05)"
-              p="18px"
-              borderRadius="14px"
-              _hover={{ borderColor: "var(--highlight-accent)" }}
-              transition="border-color 0.2s"
+            <Link
+              href={contactContent.phoneHref}
+              display="inline-flex"
+              alignItems="center"
+              gap="7px"
+              px="14px"
+              py="7px"
+              borderRadius="999px"
+              bg="rgba(255,255,255,0.03)"
+              border="1px solid rgba(255,255,255,0.08)"
+              fontSize="13px"
+              color="var(--text-secondary)"
+              _hover={{ color: "white", borderColor: "rgba(255,255,255,0.2)", textDecoration: "none" }}
+              transition="all 0.18s ease"
             >
-              <Flex align="center" justify="space-between">
-                <Flex align="center" gap="12px">
-                  <Flex w="36px" h="36px" bg="rgba(16, 185, 129, 0.08)" borderRadius="8px" align="center" justify="center">
-                    <Icon as={FiPhone} color="var(--highlight-accent)" w="18px" h="18px" />
-                  </Flex>
-                  <Box>
-                    <Text fontSize="11px" color="var(--text-muted)" fontWeight="600" letterSpacing="0.05em">
-                      DIRECT PHONE
-                    </Text>
-                    <Link
-                      href={contactContent.phoneHref}
-                      fontSize="14px"
-                      fontWeight="700"
-                      color="white"
-                      _hover={{ color: "var(--highlight-accent)" }}
-                    >
-                      {contactContent.phone}
-                    </Link>
-                  </Box>
-                </Flex>
-              </Flex>
-            </Box>
+              <Icon as={FiPhone} w="14px" h="14px" color="var(--accent-emerald)" />
+              {contactContent.phone}
+            </Link>
+
+            <Flex
+              align="center"
+              gap="6px"
+              px="12px"
+              py="7px"
+              fontSize="12.5px"
+              color="var(--text-muted)"
+            >
+              <Icon as={FiMapPin} w="13px" h="13px" color="var(--accent-cyan)" />
+              <Text>{contactContent.location}</Text>
+            </Flex>
           </Flex>
-        </Grid>
+        </Flex>
       </MotionBox>
     </Box>
   );
